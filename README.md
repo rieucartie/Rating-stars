@@ -32,6 +32,7 @@ INSERT INTO `rating` (`id`, `notes`) VALUES
 TABLE USER :
 
 php bin/console security:encode-password
+
 roles : ["ROLE_USER"]
 
 -- --------------------------------------------------------
