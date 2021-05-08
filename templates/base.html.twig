@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
+               integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+    {% block stylesheets %}  {% endblock %}
+    <style>
+	    /*   global  */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 20px;
+        }
+        .total{
+            border-bottom: 2px solid #0d0000;
+            color: #0d0000;
+            font-weight: bold;
+            font-size: 22px;
+            font-family: roboto;
+        }
+        .row {
+            display: flex;
+        }
+        .container {
+            /* max-width: 840px;*/
+            margin-bottom: 50px;
+        }
+        /* input */
+        input[type=checkbox] {
+            position: absolute;
+            opacity: 0;
+        }
+        input[type=checkbox] + label::before,
+        input[type=checkbox] + label::after {
+            content: '';
+            position: absolute;
+            display: inline-block;
+        }
+        input[type=checkbox] + label::before {
+            left: 0.5rem;
+            top: 0.15rem;
+            width: 0.9rem;
+            height: 0.9rem;
+            border: 0.05rem solid black;
+            background: white;
+        }
+        input[type=checkbox]:checked + label::after {
+            left: 0.6rem;
+            top: 0.28rem;
+            height: 0.8rem;
+            border-left: 0.8rem solid black;
+        }
+
+        input[type=checkbox]:focus + label::before {
+            outline: 0.05rem dotted;
+        }
+        /*  fin input  *//*  fin input  *//*  fin input  */
+        
+        /* navbar*/
+        .top_navbar{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: #fff;
+            box-shadow: 1px 0 2px rgba(0,0,0,0.125);
+            display: flex;
+            align-items: center;
+        }
+
+        .top_navbar .logo{
+            width: 250px;
+            font-size: 25px;
+            font-weight: 600;
+            padding: 0 25px;
+            color: #007dc3;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-right: 1px solid #f5f5f5;
+        }
+
+        .top_navbar .logo span{
+            font-weight: 400;
+        }
+
+        .top_navbar .menu{
+            width: calc(100% - 250px);
+            padding: 0 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .top_navbar .hamburger{
+            font-size: 25px;
+            cursor: pointer;
+            color: #005faf;
+        }
+
+        .top_navbar .hamburger:hover{
+            color: #007dc3;
+        }
+
+        .top_navbar .menu .profile_wrap{
+            padding-left: 25px;
+            border-left: 1px solid #f5f5f5;
+        }
+
+        .top_navbar .menu .profile img{
+            width: 25px;
+            height: 25px;
+        }
+
+        .top_navbar .menu .profile{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .top_navbar .menu .profile .name{
+            margin: 0 15px;
+        }
+
+        #navbarNav {
+            background-color: #6c4e4e;
+        }
+        .nav-link{
+            color: #fefefe !important;
+        }
+		/*   card  */
+		.cardimg-top{
+            width: 200px;
+            height: 200px;
+        }
+        .card-body {
+            -webkit-box-flex: 1;
+            -ms-flex: 1 1 auto;
+            flex: 1 1 auto;
+            padding: 1.25rem;
+            line-height: 34px;
+            width: 232px;
+        }
+        .card {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 1px solid rgba(0,0,0,.125);
+            border-radius: .25rem;
+        }
+    </style>
+</head>
+<body>
+{% include 'inc/navbar.html.twig' %}
+{% for label, messages in app.flashes %}
+    <section class="container">
+        {% for message in messages %}
+            <div class="alert alert-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </section>
+{% endfor %}
+<div style="margin-top:1rem">
+    {% block render %} {% endblock %}
+    {% block body %}
+    {% endblock %}
+</div>
+{% block javascripts %}
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
+{% endblock %}
+</body>
+</html>

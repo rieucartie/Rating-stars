@@ -1,0 +1,117 @@
+{% extends 'base.html.twig' %}
+{% block titre %}{{ produit.name }}{% endblock %}
+ {% block stylesheets %}
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css">
+ {% endblock %}
+{% block body %}
+    <div class="container">
+        <div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+                <!-- The Modal -->
+                <div id="myModal" class="modal">
+                    <span class="close">&times;</span>
+                    <img class="modal-content" id="img01">
+                    <div id="caption"></div>
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h4 card-title style="text-decoration: underline;">{{ produit.name }}</h4>
+                        <div class="row ml-2">
+                            <strong>Votez : </strong>
+                                <form action="" method="post">
+                                    <div class="stars"  >
+                                        <i class="lar la-star"  data-url="{{ path('starsSave', { 'id' : produit.id }) }}" data-value="1"></i>
+                                        <i class="lar la-star" data-url="{{ path('starsSave', { 'id' : produit.id }) }}"  data-value="2"></i>
+                                        <i class="lar la-star" data-url="{{ path('starsSave', { 'id' : produit.id }) }}"  data-value="3"></i>
+                                        <i class="lar la-star" data-url="{{ path('starsSave', { 'id' : produit.id }) }}" data-value="4"></i>
+                                        <i class="lar la-star" data-url="{{ path('starsSave', { 'id' : produit.id }) }}" data-value="5"></i>
+                                    </div>
+                                    <input type="hidden" name="note" id="note" value="0">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+        // On va chercher toutes les étoiles
+        const stars = document.querySelectorAll(".la-star");
+
+        // On va chercher l'input
+        const note = document.querySelector("#note");
+
+        // On boucle sur les étoiles pour le ajouter des écouteurs d'évènements
+        for(star of stars){
+            // On écoute le survol
+            star.addEventListener("mouseover", function(){
+                resetStars();
+                this.style.color = "red";
+                this.classList.add("las");
+                this.classList.remove("lar");
+                // L'élément précédent dans le DOM (de même niveau, balise soeur)
+                let previousStar = this.previousElementSibling;
+
+                while(previousStar){
+                    // On passe l'étoile qui précède en rouge
+                    previousStar.style.color = "red";
+                    previousStar.classList.add("las");
+                    previousStar.classList.remove("lar");
+                    // On récupère l'étoile qui la précède
+                    previousStar = previousStar.previousElementSibling;
+                }
+            });
+
+            // On écoute le clic
+            star.addEventListener("click", function(){
+                note.value = this.dataset.value;
+                const url =this.getAttribute('data-url');
+                //console.log(this.dataset.value)
+                fetch(url,
+                    {
+                        body: JSON.stringify(this.dataset.value),
+                        headers: {
+                            'Accept': 'application/json',
+                            'Content-Type': 'application/json',
+                            'X-Requested-With':'XMLHttpRequest'
+                        },
+                        method: "POST",
+                    })
+                    .then(function(res){
+                        if(res.ok) {
+                            alert('merci pour votre vote');
+                        } else {
+                            alert('Vous avez déja donné cette note')
+                        }
+                        return res.json();
+                    })
+                   .then(function(data){
+
+                    })
+            });
+            star.addEventListener("mouseout", function(){
+                resetStars(note.value);
+            });
+        }
+        /**
+         * Reset des étoiles en vérifiant la note dans l'input caché
+         * @param {number} note
+         */
+        function resetStars(note = 0){
+            for(star of stars){
+                if(star.dataset.value > note){
+                    star.style.color = "black";
+                    star.classList.add("lar");
+                    star.classList.remove("las");
+                }else{
+                    star.style.color = "red";
+                    star.classList.add("las");
+                    star.classList.remove("lar");
+                }
+            }
+        }
+    </script>
+{% endblock %}

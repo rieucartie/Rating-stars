@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+{% block title %}tous lesproduits{% endblock %}
+{% block stylesheets %}  {% endblock %}
+{% block body %}
+<div class="container">
+        <div class="row">
+                    <div class="grid">
+                        {% for product in AvgForeahProduct %}
+                            {% include 'products/_card.html.twig' with {
+                                product:product
+                            }  %}
+                        {% endfor %}
+                    </div>
+            </div>
+        </div>
+</div>
+
+{% endblock %}
+
