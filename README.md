@@ -1,4 +1,4 @@
-# RatingMulti
+# Rating stars
 
 Projet qui permet d'ajouter des étoiles à un item , limiter les votes par utilisateurs et regrouper les moyennes et le nombre de votes sur la page d'accueil
 
