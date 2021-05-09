@@ -36,7 +36,7 @@ php bin/console security:encode-password
 roles : ["ROLE_USER"]
 
 -- --------------------------------------------------------
-iL FAUT INITIALISER POUR CHAQUE PRODUIT UNE PREMIERE VALEUR EN BASE AVEC LA NOTE QU'ON VEUT LUI JOINDRE  
+IL FAUT INITIALISER POUR CHAQUE PRODUIT UNE PREMIERE VALEUR EN BASE AVEC LA NOTE QU'ON VEUT LUI ADJOINDRE  
 
 INSERT INTO `products_rating` (`id`, `rating_id`, `product_id`, `users_id`, `created`) 
 VALUES (NULL, '1', '4', NULL, '2021-05-04 00:00:00');
