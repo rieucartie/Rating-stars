@@ -42,6 +42,6 @@ INSERT INTO `products_rating` (`id`, `rating_id`, `product_id`, `users_id`, `cre
 VALUES (NULL, '1', '4', NULL, '2021-05-04 00:00:00');
 
 GO !
-
+ 
 
 
