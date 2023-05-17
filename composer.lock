@@ -586,7 +586,7 @@
             },
             "conflict": {
                 "doctrine/orm": "<2.6",
-                "twig/twig": "3.4.3"
+                "twig/twig": "3.3.0"
             },
             "require-dev": {
                 "doctrine/coding-standard": "^8.0",
@@ -603,7 +603,7 @@
                 "symfony/validator": "^3.4.30|^4.3.3|^5.0",
                 "symfony/web-profiler-bundle": "^3.4.30|^4.3.3|^5.0",
                 "symfony/yaml": "^3.4.30|^4.3.3|^5.0",
-                "twig/twig": "3.4.3",
+                "twig/twig": "3.3.0",
                 "vimeo/psalm": "^4.7"
             },
             "suggest": {
@@ -8028,7 +8028,7 @@
                 "symfony/http-kernel": "^5.2",
                 "symfony/routing": "^4.4|^5.0",
                 "symfony/twig-bundle": "^4.4|^5.0",
-                "twig/twig": "3.4.3"
+                "twig/twig": "3.3.0"
             },
             "conflict": {
                 "symfony/dependency-injection": "<5.2",
