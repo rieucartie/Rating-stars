@@ -8028,7 +8028,7 @@
                 "symfony/http-kernel": "^5.2",
                 "symfony/routing": "^4.4|^5.0",
                 "symfony/twig-bundle": "^4.4|^5.0",
-                "twig/twig": "^2.13|^3.0.4"
+                "twig/twig": "3.4.3"
             },
             "conflict": {
                 "symfony/dependency-injection": "<5.2",
